@@ -34,3 +34,24 @@ header a {
 .ant-table-cell img {
   max-width: 100px;
 }
+
+.anime-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.anime-card-info {
+  width: 1000px;
+}
+
+.anime-card img {
+  align-items: center;
+  justify-content: center;
+}
+
+.score {
+  width: 100px;
+  text-align: center;
+  font-size: 25px;
+}

@@ -19,15 +19,29 @@ const Home = () => {
 
     const columns = [
         {
-            title: "Image",
-            dataIndex: "main_picture",  // this is the value that is parsed from the DB / server side
-            render: theImageURL => <img alt={theImageURL} src={theImageURL} />  // 'theImageURL' is the variable you must declare in order the render the URL
-        },
-        {
             title: 'Title',
             dataIndex: 'title',
             key: 'title',
-            sorter: (a, b) => a.title.localeCompare(b.title)
+            sorter: (a, b) => a.title.localeCompare(b.title),
+            render: (text, record) =>(
+                <div className="anime-card">
+                    <img alt={record.main_picture} src={record.main_picture} />
+                    <div className="anime-card-info">
+                        <p>{text}</p>
+                        <p>Rating: {record.rating.toUpperCase()}</p>
+                    </div>
+                </div>
+            ) 
+        },
+        {
+            title: 'Score',
+            dataIndex: 'score',
+            key: 'score',
+            render: (text, record) => (
+                <div className="score">
+                    <p>{text.toPrecision(3)}</p>
+                </div>
+            )
         }
     ];
 
