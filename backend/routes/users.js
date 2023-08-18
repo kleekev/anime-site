@@ -20,7 +20,6 @@ router.get('/:id', getUser);
 router.post('/', createUser);
 
 // DELETE a user
-
 router.delete('/', deleteUser);
 
 module.exports = router;

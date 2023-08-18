@@ -2,12 +2,15 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const {MongoClient} = require('mongodb');
+const cors = require('cors');
 const animeRoutes = require('./routes/anime');
 const userRoutes = require('./routes/users');
 
 // express app
 const app = express();
+
+// whitelist localhost 3000
+app.use(cors({ credentials: true, origin: ['http://localhost:3000'] }));
 
 // middleware
 app.use(express.json());
