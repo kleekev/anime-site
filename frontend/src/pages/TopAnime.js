@@ -2,12 +2,17 @@ import { useEffect, useState } from 'react'
 import { StarFilled } from '@ant-design/icons';
 import { Table } from 'antd';
 
+
+// components
+import Filterbar from '../components/Filterbar';
+
 const captialize =  (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 const TopAnime = () => {
     const [topAnimes, setTopAnimes] = useState(null);
+    
 
     useEffect(() => {
         const fetchTopAnime = async () => {
@@ -58,6 +63,7 @@ const TopAnime = () => {
     return (
         <div className="top-anime">
             <h1>Top 100 Ranked Animes</h1>
+            <Filterbar />
             <div className="top-animes-list">
                 <Table dataSource={topAnimes} columns={columns} />
             </div>
