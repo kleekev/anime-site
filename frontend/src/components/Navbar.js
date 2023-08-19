@@ -4,12 +4,36 @@ const Navbar = () => {
     return (
         <header>
             <div className="container">
-                <Link to="/">
-                    <h1>Anime Site</h1>
-                </Link>
-                <Link to="/top_animes">
-                    <h2>Top Animes</h2>
-                </Link>
+                <div className="first-links links">
+                    <div className="dropdown">
+                        <div className="anime-menu">
+                            Anime
+                        </div>
+                        <div className="dropdown-content">
+                            <Link to='/top_animes'>
+                                Top 100 Animes
+                            </Link>
+                            <Link>
+                                Recommend Anime
+                            </Link>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div>
+                    <Link className="home-link links" to="/">
+                        Anime Site
+                    </Link>
+                </div>
+                <div className="other-links links">
+                    <Link className='login' to="/login">
+                        Login
+                    </Link>
+                    <Link className='sign-up' to="/sign_up">
+                        Sign-Up
+                    </Link>
+                </div>
+                
             </div>
         </header>
     )

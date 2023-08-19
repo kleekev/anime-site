@@ -1,48 +1,170 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+}
 /* layout */
 :root {
   --primary: #1aac83;
   --error: #e7195a;
+  --dark-blue: #5680E9;
+  --sky-blue: #84CEEB;
+  --regular-blue: #5AB9EA;
+  --light-purp: #C1C8E4;
+  --dark-purp: #8860D0;
 }
 body {
-  background: #f1f1f1;
+  background:
+        linear-gradient(var(--light-purp), transparent),
+        linear-gradient(to top left, var(--sky-blue), transparent),
+        linear-gradient(to top right, var(--dark-blue), transparent);
+    background-blend-mode: screen;
   margin: 0;
   font-family: "Poppins";
 }
-header {
-  background: #fff;
+
+.pages{
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
 }
+
+/* Navbar */
 header .container {
+  font-family: 'Roboto Slab', serif;
   max-width: 1400px;
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
+
 header a {
-  color: #333;
+  color: black;
   text-decoration: none;
 }
-.pages{
-  max-width: 1400px;
-  padding: 20px;
-  margin: 0 auto;
+
+.sign-up, .login {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 125px;
+  font-size: 20px;
 }
+
+.sign-up {
+  background-color: var(--dark-blue);
+  border: 1px var(--dark-blue) solid;
+  border-radius: 50px;
+}
+
+.login {
+  background-color: #5CDB95;
+  border: 1px #5CDB95 solid;
+  border-radius: 50px;
+}
+
+.links {
+  height: 55px;
+}
+
+.first-links {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+}
+
+.other-links {
+  display: flex;
+  gap: 15px;
+  justify-content: right;
+}
+
+.home-link {
+  min-width: 225px;
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.anime-menu {
+  color: white;
+  font-size: 35px;
+  padding: 5px;
+  border: none;
+}
+
+.dropdown {
+  width: 120px;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 20px;
+  display: none;
+  position: absolute;
+  background-color: #C1C8E4;
+  width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  -webkit-box-shadow: inset 0px 0px 300px -150px rgba(0,0,0,0.31);
+  -moz-box-shadow: inset 0px 0px 300px -150px rgba(0,0,0,0.31);
+  box-shadow: inset 0px 0px 300px -150px rgba(0,0,0,0.31);
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .anime-menu {
+  /* -webkit-box-shadow: 13px 15px 33px -6px rgba(0,0,0,0.61);
+  -moz-box-shadow: 13px 15px 33px -6px rgba(0,0,0,0.61);
+   box-shadow: 13px 15px 33px -6px rgba(0,0,0,0.61); */
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+   background-color: var(--light-purp);
+}
+
+/* Home page */
 .ant-table-cell img {
   max-width: 100px;
 }
 
 .anime-card {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 800;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .anime-card-info {
-  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 15px;
+  width: 1100px;
+  font-size: 15px;
 }
 
 .anime-card img {
@@ -54,4 +176,16 @@ header a {
   width: 100px;
   text-align: center;
   font-size: 25px;
+}
+
+.stars {
+  color: rgb(198, 198, 30);
+}
+
+.top-anime h1{
+  padding: 15px 0;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 50px;
 }
