@@ -25,7 +25,7 @@ app.use('/api/users', userRoutes);
 
 // connect to database
 async function connectToMongoDB() {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGOOSE_URI);
     
     // listen for requests
     app.listen(process.env.PORT, () => {

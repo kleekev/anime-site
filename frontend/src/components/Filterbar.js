@@ -20,6 +20,7 @@ const Filterbar = () => {
                     { value: 'summer', label: 'Summer' },
                     { value: 'fall', label: 'Fall' },
                 ]}
+                value={season}
             />
         </div>
     )

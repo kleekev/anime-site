@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //pages & components 
 import Home from './pages/Home'
 import TopAnime from './pages/TopAnime';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -19,6 +21,14 @@ function App() {
             <Route 
               path="/top_animes"
               element={<TopAnime />}
+            />
+            <Route 
+              path="/login"
+              element={<Login />}
+            />
+            <Route 
+              path="/signup"
+              element={<Signup />}
             />
           </Routes>
         </div>

@@ -1,25 +1,17 @@
 const express = require('express');
 const User = require('../models/userModel');
+
 const {
-    getUser,
-    createUser,
-    deleteUser
+    loginUser,
+    signupUser
 } = require('../controllers/userController');
 
-const router = express.Router();
+const router = express.Router()
 
-// GET all users
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all Users'});
-});
+// login route
+router.post('/login', loginUser);
 
-// GET a single user
-router.get('/:id', getUser);
-
-// POST a new user
-router.post('/', createUser);
-
-// DELETE a user
-router.delete('/', deleteUser);
+// signup route
+router.post('/signup', signupUser);
 
 module.exports = router;

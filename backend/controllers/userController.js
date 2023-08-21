@@ -1,50 +1,42 @@
 const User = require('../models/userModel');
+const jwt = require('jsonwebtoken');
 
-// Get a single user
-const getUser = async (req, res) => {
-    const {id} = req.body;
-
-    if (!mongoose.Types.ObjectID.isValid(id)) {
-        return res.status(404).json({error: 'No such User'});
-    }
-
-    const user = await User.findById(id);
-
-    if (!user) {
-        return res.status(404).json({error: 'No such User'}); 
-    }
-    res.status(200).json(user);
+const createToken = (_id) => {
+    return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
 }
 
-// Create a user
-const createUser = async (req, res) => {
-    const {userName, password} = req.body;
-
+// login user
+const loginUser = async (req, res) => {
+    const {email, password} = req.body;
+    
     try {
-        const user = await User.create({userName, password});
-        res.status(200).json(user);
+        const user = await User.login(email, password);
+
+        // create a token
+        const token = createToken(user._id);
+
+        res.status(200).json({email, token});
     } catch (error) {
-        res.status(400).json({error: error.message});
+        res.status(400).json({errror: error.message});
     }
 }
 
-// Delete a user
-const deleteUser = async (req, res) => {
-    const {id} = req.body;
+// signup user
+const signupUser = async (req, res) => {
+    const {email, password} = req.body;
+    
+    try {
+        const user = await User.signup(email, password);
 
-    if (!mongoose.Types.ObjectID.isValid(id)) {
-        return res.status(404).json({error: 'No such User'});
+        // create a token
+        const token = createToken(user._id);
+
+        res.status(200).json({email, token});
+    } catch (error) {
+        res.status(400).json({errror: error.message});
     }
-
-    const user = await User.findOneAndDelete({_id: id});
-
-    if (!user) {
-         res.status(400).json({error: 'No such User'});
-    }
-    res.status(200).json(user);
 }
 module.exports = {
-    getUser,
-    createUser,
-    deleteUser
+    loginUser,
+    signupUser
 }
