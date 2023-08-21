@@ -1,12 +1,17 @@
 import { useState } from "react";
+import { useSignup } from "../hooks/useSignup";
+import { ExclamationCircleFilled } from '@ant-design/icons'
 
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {signup, error, isLoading} = useSignup();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email, password);
+        
+        await signup(email, password);
+        console.log(error)
     }
     return (
         <div className="form">
@@ -26,7 +31,8 @@ const Signup = () => {
                     value={password}
                 />
 
-                <button>Sign up</button>
+                <button disabled={isLoading}>Sign up</button>
+                {error && <div className="error"><ExclamationCircleFilled className="exclamation-error"/> {error}</div>}
             </form>
         </div>
         
