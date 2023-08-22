@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react'
-import { Table } from 'antd';
+import AliceCarousel from 'react-alice-carousel';
+import { Card } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
+
+const { Meta } = Card;
 
 const Home = () => {
     const [seasonalAnime, setSeasonalAnime] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchSeasonalAnime = async () => {
+            setIsLoading(true);
             const response = await fetch('http://localhost:4000/api/animes/search?season=summer&year=2023')
             const json = await response.json();
+
 
             if (response.ok) {
                 const filteredJson = json.filter((anime) => {
@@ -15,46 +22,64 @@ const Home = () => {
                 })
                 setSeasonalAnime(filteredJson);
             }
+            setIsLoading(false);
         }
 
         fetchSeasonalAnime()
     }, [])
 
-    const columns = [
-        {
-            title: 'Title',
-            dataIndex: 'title',
-            key: 'title',
-            sorter: (a, b) => a.title.localeCompare(b.title),
-            render: (text, record) =>(
-                <div className="anime-card">
-                    <img alt={record.main_picture} src={record.main_picture} />
-                    <div className="anime-card-info">
-                        <p>{text}</p>
-                        <p>Rating: {record.rating ? record.rating.toUpperCase(): 'N/A'}</p>
-                    </div>
-                </div>
-            ) 
+    const responsive = {
+        0: {
+            items: 1,
+            itemsFit: 'contain'
         },
-        {
-            title: 'Score',
-            dataIndex: 'score',
-            key: 'score',
-            sorter: (a, b) => a.score - (b.score),
-            render: (text, record) => (
-                <div className="score">
-                    <p>{text ? text.toPrecision(3) : 'N/A'}</p>
-                </div>
-            )
-        }
-    ];
+        600: {
+            items: 2,
+            itemsFit: 'contain'
+        },
+        800: {
+            items: 3,
+            itemsFit: 'contain'
+        },
+        1000: {
+            items: 4,
+            itemsFit: 'contain'
+        },
+        1300: {
+            items: 5,
+            itemsFit: 'contain'
+        },
+    }
 
     return (
         <div className="home">
-            <h1>Summer 2023 Anime</h1>
-            <div className="seasonal">
-                <Table dataSource={seasonalAnime} columns={columns} />
-            </div>
+            {isLoading ? <LoadingOutlined className='loading-icon'/> :
+                <div className="seasonal-animes">
+                    <h2>Summer 2023 Anime</h2>
+                    <AliceCarousel
+                        autoPlay={true}
+                        startIndex = {1}
+                        disableDotsControls ={true}
+                        fadeOutAnimation={true}
+                        playButtonEnabled={true}
+                        responsive={responsive}
+                        autoPlayInterval={2000}
+                        autoPlayActionDisabled={true}
+                        infinite={true}
+                    >
+                        {seasonalAnime.map((anime) => (
+                            <Card className='seasonal-anime-card'
+                                hoverable
+                                style={{ width: 240 }}
+                                cover={<img alt={anime.title} src={anime.main_picture} />}
+                            >
+                                <Meta title={anime.title} description={"⭐" + anime.score.toPrecision(3)} />
+                                
+                            </Card>
+                        ))}
+                    </AliceCarousel>
+                </div>
+            }
         </div>
     )
 }

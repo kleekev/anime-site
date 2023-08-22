@@ -1,11 +1,57 @@
 /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700;800;900&display=swap');
+@import "react-alice-carousel/lib/alice-carousel.css";
 
-* {
-  margin: 0;
-  padding: 0;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 /* layout */
 :root {
   --primary: #1aac83;
@@ -17,11 +63,7 @@
   --dark-purp: #8860D0;
 }
 body {
-  background:
-        linear-gradient(var(--light-purp), transparent),
-        linear-gradient(to top left, var(--sky-blue), transparent),
-        linear-gradient(to top right, var(--dark-blue), transparent);
-    background-blend-mode: screen;
+  background: #EDF1F5;
   margin: 0;
   font-family: "Poppins";
   min-height: 100vh;
@@ -35,160 +77,40 @@ body {
 
 /* Navbar */
 header .container {
+  background-color: #2b2d42;
+  color: #EDF1F5;
   font-family: 'Roboto Slab', serif;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 10px 20px;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  position: relative;
+  justify-content: center;
+  gap: 250px;
 }
 
 header a {
-  color: black;
+  color: inherit;
   text-decoration: none;
-}
-
-.sign-up, .login {
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 125px;
-  font-size: 20px;
-}
-
-.sign-up {
-  background-color: var(--dark-blue);
-  border: 1px var(--dark-blue) solid;
-  border-radius: 50px;
-}
-
-.login {
-  background-color: #5CDB95;
-  border: 1px #5CDB95 solid;
-  border-radius: 50px;
-}
-
-.links {
-  height: 55px;
-}
-
-.first-links {
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-}
-
-.other-links {
-  display: flex;
-  gap: 15px;
-  justify-content: right;
+  margin: 20px 15px;
 }
 
 .home-link {
-  min-width: 225px;
-  font-size: 40px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.anime-menu {
-  color: white;
-  font-size: 35px;
-  padding: 5px;
-  border: none;
-}
-
-.dropdown {
-  width: 120px;
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 20px;
-  display: none;
-  position: absolute;
-  background-color: #C1C8E4;
-  width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-  color: black;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  -webkit-box-shadow: inset 0px 0px 300px -150px rgba(0,0,0,0.31);
-  -moz-box-shadow: inset 0px 0px 300px -150px rgba(0,0,0,0.31);
-  box-shadow: inset 0px 0px 300px -150px rgba(0,0,0,0.31);
-}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .anime-menu {
-  /* -webkit-box-shadow: 13px 15px 33px -6px rgba(0,0,0,0.61);
-  -moz-box-shadow: 13px 15px 33px -6px rgba(0,0,0,0.61);
-   box-shadow: 13px 15px 33px -6px rgba(0,0,0,0.61); */
-   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-   background-color: var(--light-purp);
-}
-
-/* Home page */
-.ant-table-cell img {
-  max-width: 100px;
-}
-
-.anime-card {
-  font-family: 'Roboto Slab', serif;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-}
-
-.anime-card-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 15px;
-  width: 1100px;
-  font-size: 15px;
-}
-
-.anime-card img {
-  align-items: center;
-  justify-content: center;
-}
-
-.score {
-  width: 100px;
-  text-align: center;
   font-size: 25px;
 }
 
-.stars {
-  color: rgb(198, 198, 30);
+.links span {
+  margin: 0 15px;
 }
 
-.top-anime h1{
-  padding: 15px 0;
-  font-family: 'Roboto Slab', serif;
-  font-weight: 800;
-  letter-spacing: 2px;
-  font-size: 50px;
+/* Home page */
+.ant-card-cover img {
+  height: 350px;
+  object-fit: cover;
+}
+
+.seasonal-animes h2 {
+  font-size: 35px;
+  margin: 15px auto 40px;
+  padding: auto;
 }
 
 /* form */
@@ -237,6 +159,18 @@ div.error {
   margin: 20px 0;
 }
 
+/* icons */
 .exclamation-error {
   margin-right: 5px;
+}
+
+.loading-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-icon svg {
+  width: 170px;
+  height: 170px;
 }
