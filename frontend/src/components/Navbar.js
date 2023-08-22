@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { CaretUpFilled } from '@ant-design/icons'
 
 const Navbar = () => {
     const { logout } = useLogout();
@@ -16,8 +17,36 @@ const Navbar = () => {
                     AniTrack
                 </Link>
                 <div className="links">
-                    <span>Anime</span>
-                    <span>Social</span>
+                    <div className="dropdown">
+                        <span className='dropdown-icon'>Anime</span>
+                        <CaretUpFilled className='dropdown-arrow'/>
+                        <div className="dropdown-content">
+                            <Link>
+                                Top 100
+                            </Link>
+                            <Link>
+                                Search
+                            </Link>
+                            <Link>
+                                Recommend
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="dropdown">
+                        <span className='dropdown-icon'>Social</span>
+                        {/* <CaretUpFilled className='dropdown-arrow'/>
+                        <div className="dropdown-content">
+                            <Link>
+                                Threads
+                            </Link>
+                            <Link>
+                                Find AniMates
+                            </Link>
+                            <Link>
+                                Threads
+                            </Link>
+                        </div>   */}
+                    </div>
                 </div>
                 {user ? (
                     <div className='other-links links'>

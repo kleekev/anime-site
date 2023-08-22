@@ -73,7 +73,7 @@ const Home = () => {
                                 style={{ width: 240 }}
                                 cover={<img alt={anime.title} src={anime.main_picture} />}
                             >
-                                <Meta title={anime.title} description={"⭐" + anime.score.toPrecision(3)} />
+                                <Meta id='seasonal-anime-desc'title={anime.title} description={"⭐ " + anime.score.toPrecision(3)} />
                                 
                             </Card>
                         ))}
