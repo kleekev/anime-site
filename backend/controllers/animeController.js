@@ -71,7 +71,9 @@ const getTopAnime = async (req, res) => {
         start_year: 1,
         start_season: 1,
         episodes: 1,
-        type: 1
+        type: 1,
+        synopsis: 1,
+        genres: 1
     }
     const animeCollection = client.db('anime').collection('anime');
     const animes = await animeCollection.find({}).project(projection).sort({score: -1}).limit(100);

@@ -21,7 +21,7 @@ const Navbar = () => {
                         <span className='dropdown-icon'>Anime</span>
                         <CaretUpFilled className='dropdown-arrow'/>
                         <div className="dropdown-content">
-                            <Link>
+                            <Link to={'/top_animes'}>
                                 Top 100
                             </Link>
                             <Link>
@@ -34,18 +34,6 @@ const Navbar = () => {
                     </div>
                     <div className="dropdown">
                         <span className='dropdown-icon'>Social</span>
-                        {/* <CaretUpFilled className='dropdown-arrow'/>
-                        <div className="dropdown-content">
-                            <Link>
-                                Threads
-                            </Link>
-                            <Link>
-                                Find AniMates
-                            </Link>
-                            <Link>
-                                Threads
-                            </Link>
-                        </div>   */}
                     </div>
                 </div>
                 {user ? (

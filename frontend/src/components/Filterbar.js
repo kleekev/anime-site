@@ -11,8 +11,10 @@ const Filterbar = () => {
     return (
         <div className="filter-bar">
             <Select
-                placeholder="Select a season"
-                style={{ width: 120 }}
+                defaultValue='Any'
+                size='medium'
+                placeholder='Any'
+                style={{ width: 125 }}
                 onChange={handleSeasonChange}
                 options={[
                     { value: 'winter', label: 'Winter' },

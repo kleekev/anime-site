@@ -56,6 +56,7 @@ table {
 :root {
   --primary: #1aac83;
   --error: #e7195a;
+  --color-shadow-blue: 103,132,187;
 }
 body {
   background: #EDF1F5;
@@ -160,17 +161,19 @@ header a {
   object-fit: cover;
 }
 
-.seasonal-animes h2 {
+.seasonal-animes h2, .top-animes-page h2 {
   font-size: 35px;
   font-weight: bold;
   margin: 15px auto 40px;
   padding: auto;
+  letter-spacing: 1px;
 }
 
 #seasonal-anime-desc {
   font-size: 20px;
   font-weight: bold;
 }
+
 :where(.css-dev-only-do-not-override-byeoj0).ant-card .ant-card-meta-description {
   color: black;
 }
@@ -237,3 +240,171 @@ div.error {
   width: 170px;
   height: 170px;
 }
+
+/* filter bar */
+.filter-bar input {
+  width: 200px;
+}
+
+/* top anime page */
+.top-animes-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 50px;
+}
+
+/* anime card */
+.anime-card {
+  width: 420px;
+  height: 275px;
+  display: flex;
+  background-color: white;
+  box-shadow: 0 14px 30px rgba(var(--color-shadow-blue),.15),0 4px 4px rgba(var(--color-shadow-blue),.05);
+  border-radius: 5px;
+} 
+
+.anime-card img {
+  width: 200px;
+  height: 275px;
+  object-fit: cover;
+}
+
+.anime-card .image-container {
+  box-sizing: content-box;
+  position: relative;
+  width: 200px
+}
+
+.anime-card .image-container div {
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  background-color: black;
+  color: white;
+  opacity: 0.85;
+  position: absolute;
+  top: 220px;
+  width: 100%;
+  font-size: 11px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 15px;
+}
+
+.anime-card-details {
+  box-sizing: content-box;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+.anime-card-details .header {
+  height: 20%;
+  padding: 10px
+}
+.anime-card-details .description {
+  height: 80%;
+  overflow: auto;
+  font-size: 10px;
+  color: #8BA0B2;
+  overscroll-behavior: contain;
+  padding: 10px;
+  padding-left: 2;
+}
+.anime-card-details .footer {
+  height: 10%;
+  padding: 10px;
+  font-size: 10.5px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: rgb(237,241,245);
+}
+
+.anime-card-details .footer span {
+  padding: 2px 5px;
+  border-radius: 10px;
+  margin: 0 2px;
+}
+
+
+#action {
+  background-color: #F3FFB9;
+}
+
+#adventure {
+  background-color: #CDE7B0;
+}
+
+#drama {
+  background-color: #B5FFE9;
+}
+
+#fantasy {
+  background-color: #AA78A6;
+}
+
+#sci-fi {
+  background-color: #7C90DB;
+}
+
+#suspense {
+  background-color: #9593D9;
+}
+
+#comedy {
+  background-color: #9D8189;
+}
+#romance {
+  background-color: #FFCAD4;
+}
+
+#supernatural {
+  background-color: #F8E16C;
+}
+
+#mystery {
+  background-color: #00C49A;
+}
+
+#sports {
+  background-color: #FF570A;
+}
+
+#ecchi {
+  background-color: #FFF4FF;
+}
+
+#horror {
+  background-color: #A0DDE6;
+}
+
+#award-winning {
+  background-color: #EDD4B2;
+}
+
+#slice-of-life {
+  background-color: #D0E562;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(0,0,0,0.1);
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background: rgba(0,0,0,0.2);
+}
+::-webkit-scrollbar-thumb:hover{
+  background: rgba(0,0,0,0.4);
+}
+::-webkit-scrollbar-thumb:active{
+  background: rgba(0,0,0,.9);
+}
+

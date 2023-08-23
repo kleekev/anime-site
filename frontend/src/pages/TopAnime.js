@@ -1,72 +1,45 @@
 import { useEffect, useState } from 'react'
-import { StarFilled } from '@ant-design/icons';
-import { Table } from 'antd';
-
+import { LoadingOutlined } from '@ant-design/icons'
 
 // components
 import Filterbar from '../components/Filterbar';
+import AnimeCard from '../components/AnimeCard';
 
-const captialize =  (word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-}
+const genreSet = new Set();
 
 const TopAnime = () => {
     const [topAnimes, setTopAnimes] = useState(null);
-    
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchTopAnime = async () => {
+            setIsLoading(true);
             const response = await fetch('http://localhost:4000/api/animes/search/top_animes')
             const json = await response.json();
 
             if (response.ok) {
                 setTopAnimes(json);
             }
+            setIsLoading(false);
         }
-
+        
         fetchTopAnime()
     }, [])
 
-    const columns = [
-        {
-            title: 'Title',
-            dataIndex: 'title',
-            key: 'title',
-            sorter: (a, b) => a.title.localeCompare(b.title),
-            render: (text, record) =>(
-                <div className="anime-card">
-                    <img alt={record.main_picture} src={record.main_picture} />
-                    <div className="anime-card-info">
-                        <p>{text + ' (' + captialize(record.type) + ')'}</p>
-                        <p>{record.episodes} eps</p>
-                        <p>{captialize(record.start_season) + ' ' + record.start_year}</p>
-                        <p>Rating: {record.rating ? record.rating.toUpperCase(): 'N/A'}</p>
-                    </div>
-                </div>
-            ) 
-        },
-        {
-            title: 'Score',
-            dataIndex: 'score',
-            key: 'score',
-            sorter: (a, b) => a.score - (b.score),
-            render: (text, record) => (
-                <div className="score">
-                    <p> <StarFilled className='stars' /> {text ? text.toPrecision(3) : 'N/A'}</p>
-                </div>
-            )
-        }
-    ];
 
     
 
     return (
-        <div className="top-anime">
-            <h1>Top 100 Ranked Animes</h1>
-            <Filterbar />
-            <div className="top-animes-list">
-                <Table dataSource={topAnimes} columns={columns} />
-            </div>
+        <div className="top-animes-page">
+            {isLoading ? <LoadingOutlined /> :
+            <>
+                <h2>Top 100 Animes</h2>
+                <Filterbar />
+                <div className="top-animes-list">
+                    {topAnimes.map((anime, index) => <AnimeCard anime={anime} rank={index+1}/>)}
+                </div>
+            </>  
+            }
         </div>
     )
 }
