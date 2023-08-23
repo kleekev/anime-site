@@ -5,6 +5,11 @@ const validator = require('validator');
 const Schema  = mongoose.Schema;
 
 const UserSchema = new Schema({
+    username: {
+        type: String,
+        require: true,
+        unique: true
+    },
     email: {
         type: String, 
         required: true,
@@ -17,10 +22,13 @@ const UserSchema = new Schema({
 });
 
 // signup method
-UserSchema.statics.signup = async function(email, password) {
+UserSchema.statics.signup = async function(username, email, password) {
     // validation
-    if (!email || !password) {
+    if (!email || !password || !username) {
         throw Error('All fields must filled');
+    }
+    if (username.length > 20) {
+        throw Error('Username is too long');
     }
     if (!validator.isEmail(email)) {
         throw Error('Email is not valid');
@@ -29,16 +37,21 @@ UserSchema.statics.signup = async function(email, password) {
         throw Error('Password is not strong enough');
     }
 
-    const existingEmail = await this.findOne({ email })
+    const existingEmail = await this.findOne({ email });
+    const existingUsername = await this.findOne({ username });
 
     if (existingEmail) {
         throw Error('Email already in use');
     }
 
+    if (existingUsername) {
+        throw Error('Username already in use');
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await this.create({ email, password: hashedPassword });
+    const user = await this.create({ username, email, password: hashedPassword });
 
     return user;
 }

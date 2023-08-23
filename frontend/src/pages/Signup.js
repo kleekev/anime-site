@@ -5,18 +5,27 @@ import { ExclamationCircleFilled } from '@ant-design/icons'
 const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
     const {signup, error, isLoading} = useSignup();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        await signup(email, password);
+        await signup(username, email, password);
         console.log(error)
     }
     return (
         <div className="form">
             <form className="signup-form" onSubmit={handleSubmit}>
                 <p>Sign Up</p>
+
+                <label>Username:</label>
+                <input 
+                    type="username"
+                    onChange={(e) => setUsername(e.target.value)}
+                    value={username}
+                />
+
                 <label>Email:</label>
                 <input 
                     type="email"
