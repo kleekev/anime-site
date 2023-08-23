@@ -17,4 +17,5 @@ router.get('/search/top_animes', getTopAnime);
 
 // GET a single anime
 router.get('/:id', getAnime);
+
 module.exports = router;
