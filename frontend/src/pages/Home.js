@@ -2,12 +2,17 @@ import { useEffect, useState } from 'react'
 import AliceCarousel from 'react-alice-carousel';
 import { Card } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
+import { useAuthContext } from '../hooks/useAuthContext';
+
+// components
+import HomeBanner from '../components/HomeBanner';
 
 const { Meta } = Card;
 
 const Home = () => {
     const [seasonalAnime, setSeasonalAnime] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const { user } = useAuthContext();
 
     useEffect(() => {
         const fetchSeasonalAnime = async () => {
@@ -53,6 +58,7 @@ const Home = () => {
 
     return (
         <div className="home">
+            {!user && <HomeBanner/>}
             {isLoading ? <LoadingOutlined className='loading-icon'/> :
                 <div className="seasonal-animes">
                     <h2>Summer 2023 Anime</h2>

@@ -10,7 +10,7 @@ const {
 const router = express.Router()
 
 // require auth for all user routes
-router.use(requireAuth);
+// router.use(requireAuth);
 
 // login route
 router.post('/login', loginUser);
