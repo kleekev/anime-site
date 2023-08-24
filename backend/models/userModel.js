@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
+const { Decimal128 } = require('mongodb');
 
 const Schema  = mongoose.Schema;
 
@@ -18,7 +19,16 @@ const UserSchema = new Schema({
     password: {
         type: String, 
         required: true
-    }
+    },
+    animeList: [{
+        _id: false,
+        anime_id: {type: Number, required: true, unique: true},
+        score: {type: Number},
+        status: {type: String}
+    }],
+    favoriteList: [{
+        type: Number
+    }]
 });
 
 // signup method
