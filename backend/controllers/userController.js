@@ -40,10 +40,10 @@ const signupUser = async (req, res) => {
 
 // Get user anime list
 const getAnimeList = async (req, res) => {
-    const { _id } = req.body;
+    const { email } = req.body;
 
     try {
-        const user = await User.findOne({ _id });
+        const user = await User.findOne({ email });
 
         if (!user) {
             throw Error('No such user');
@@ -57,10 +57,10 @@ const getAnimeList = async (req, res) => {
 
 // Get user favorites list
 const getFavoriteList = async (req, res) => {
-    const { _id } = req.body;
+    const { email } = req.body;
 
     try {
-        const user = await User.findOne({ _id });
+        const user = await User.findOne({ email });
 
         if (!user) {
             throw Error('No such user');
@@ -73,10 +73,10 @@ const getFavoriteList = async (req, res) => {
 }
 
 const addAnimeList = async (req, res) => {
-    const { _id, anime_id, score, status } = req.body;
+    const { email, anime_id, score, status } = req.body;
 
     try {
-        const user = await User.findOne({ _id: _id});
+        const user = await User.findOne({ email });
 
         const animeList = user.animeList;
         const anime = animeList.find((item) => item.anime_id === anime_id);
@@ -94,10 +94,10 @@ const addAnimeList = async (req, res) => {
 }
 
 const addFavoriteList = async (req, res) => {
-    const { _id, anime_id} = req.body;
+    const { email, anime_id} = req.body;
 
     try {
-        const user = await User.findOne({ _id: _id});
+        const user = await User.findOne({ email });
 
         const favoriteList = user.favoriteList;
         const favoriteAnime = favoriteList.find((item) => item === anime_id);

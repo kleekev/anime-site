@@ -11,6 +11,7 @@ const Anime = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [animeDetails, setAnimeDetails] = useState(null);
+    const [error, setError] = useState(null);
     const { user } = useAuthContext();
 
     useEffect(() => {
@@ -28,8 +29,24 @@ const Anime = () => {
         fetchAnimeDetails();
     }, [anime_id])
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (user) {
+            const email = user.email;
+            console.log(email);
+            const response = await fetch('http://localhost:4000/api/users/favoritelist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`},
+                body: JSON.stringify({email, anime_id})
+            });
+
+            const json = await response.json();
+
+            if (!response.ok) {
+                setError(json.error);
+                console.log(json.error)
+            }
             console.log("Added to favorites");
         }
     }
