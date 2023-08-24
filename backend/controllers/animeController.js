@@ -1,4 +1,5 @@
-const {MongoClient} = require('mongodb');
+const { MongoClient } = require('mongodb');
+const { DateTime } = require('luxon');
 
 // Get all animes
 const getAnimes = async (req, res) => {
@@ -34,7 +35,8 @@ const getAnime = async (req, res) => {
     if (!anime) {
         return res.status(404).json({error: 'No such anime'}); 
     }
-    res.status(200).json(anime);
+    const dateFormatted = DateTime.fromJSDate(anime.start_date).toLocaleString(DateTime.DATE_MED)
+    res.status(200).json({...anime, start_date: dateFormatted});
     client.close();
 }
 
@@ -48,8 +50,16 @@ const getAnimeSearch = async (req, res) => {
     }
     const animeCollection = client.db('anime').collection('anime');
 
+    const projection = {
+        title: 1,
+        main_picture: 1,
+        score: 1,
+        rating: 1,
+        anime_id: 1
+    }
+
     const {season , year} = req.query;
-    const animes = await animeCollection.find({start_year: Number(year), start_season: season}).project({title: 1, main_picture: 1, score: 1, rating: 1}).sort({score: -1});
+    const animes = await animeCollection.find({start_year: Number(year), start_season: season}).project(projection).sort({score: -1});
     const results = await animes.toArray();
     res.status(200).json(results);
     client.close();

@@ -1,7 +1,5 @@
-
-const captialize =  (word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-}
+// helper functions
+import capitalize from '../helper/Capitalize'
 
 const AnimeCard = (props) => {
     const anime = props.anime;
@@ -13,7 +11,7 @@ const AnimeCard = (props) => {
         <div className="anime-card">
             <div className="image-container">
                 <img src={anime.main_picture} alt={anime.title} />
-                <div>{captialize(anime.title)}</div>
+                <div>{capitalize(anime.title)}</div>
             </div>
 
             <div className="anime-card-details">

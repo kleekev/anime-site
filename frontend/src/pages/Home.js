@@ -3,6 +3,7 @@ import AliceCarousel from 'react-alice-carousel';
 import { Card } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons'
 import { useAuthContext } from '../hooks/useAuthContext';
+import { Link } from 'react-router-dom'
 
 // components
 import HomeBanner from '../components/HomeBanner';
@@ -23,7 +24,7 @@ const Home = () => {
 
             if (response.ok) {
                 const filteredJson = json.filter((anime) => {
-                    return Object.keys(anime).length > 4;
+                    return Object.keys(anime).length > 5;
                 })
                 setSeasonalAnime(filteredJson);
             }
@@ -74,14 +75,17 @@ const Home = () => {
                         infinite={true}
                     >
                         {seasonalAnime.map((anime) => (
-                            <Card className='seasonal-anime-card'
+                            <Link className='anime-card-link' to={'/anime?id=' + anime.anime_id}>
+                                <Card className='seasonal-anime-card'
                                 hoverable
                                 style={{ width: 240 }}
                                 cover={<img alt={anime.title} src={anime.main_picture} />}
-                            >
+                                >
                                 <Meta id='seasonal-anime-desc'title={anime.title} description={"⭐ " + anime.score.toPrecision(3)} />
                                 
-                            </Card>
+                                </Card>
+                            </Link>
+                            
                         ))}
                     </AliceCarousel>
                 </div>

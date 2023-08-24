@@ -5,8 +5,6 @@ import { LoadingOutlined } from '@ant-design/icons'
 import Filterbar from '../components/Filterbar';
 import AnimeCard from '../components/AnimeCard';
 
-const genreSet = new Set();
-
 const TopAnime = () => {
     const [topAnimes, setTopAnimes] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +29,7 @@ const TopAnime = () => {
 
     return (
         <div className="top-animes-page">
-            {isLoading ? <LoadingOutlined /> :
+            {isLoading ? <LoadingOutlined className='loading-icon' /> :
             <>
                 <h2>Top 100 Animes</h2>
                 <Filterbar />
