@@ -558,6 +558,7 @@ div.error {
   justify-content: center;
   align-items: center;
   font-size: 15px;
+  overflow: visible;
 }
 
 .anime-details .body .body-details .footer .list-actions {

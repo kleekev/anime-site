@@ -5,6 +5,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 // helper functions
 import capitalize from '../helper/Capitalize'
+import formatSource from "../helper/formatSource";
 
 const Anime = () => {
     const anime_id = window.location.search.substring(1).split('=')[1] 
@@ -74,12 +75,12 @@ const Anime = () => {
                         <div className="footer">
                             <div className="footer-details">
                                 <p>Season: {capitalize(animeDetails.start_season) + ' ' + animeDetails.start_year}</p>
-                                <p>Format: {capitalize(animeDetails.type)}</p>
+                                <p>Format: {animeDetails.type ? capitalize(animeDetails.type) : ''}</p>
                                 <p>Score: {animeDetails.score}</p>
                                 <p>Episodes: {animeDetails.episodes}</p>
                                 <p>Start Date: {animeDetails.start_date}</p>
-                                <p>Source: {capitalize(animeDetails.source)}</p>
-                                <p>Rating: {capitalize(animeDetails.rating)}</p>
+                                <p>Source: {animeDetails.source ? formatSource(animeDetails.source) : ''}</p>
+                                <p>Rating: {animeDetails.rating.toUpperCase()} </p>
                                 <p>Studio: {animeDetails.studios[0]}</p>
                             </div>
                             <div className="list-actions">

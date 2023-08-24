@@ -6,6 +6,7 @@ import TopAnime from './pages/TopAnime';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Anime from './pages/Anime';
+import User from './pages/User';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -34,6 +35,10 @@ function App() {
             <Route 
               path="/anime"
               element={<Anime />}
+            />
+            <Route 
+              path="/user"
+              element={<User />}
             />
           </Routes>
         </div>
