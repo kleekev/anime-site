@@ -16,7 +16,7 @@ const Signup = () => {
     }
     return (
         <div className="form">
-            <form className="signup-form" onSubmit={handleSubmit}>
+            <form className="signup-form" onSubmit={handleSubmit} noValidate>
                 <p>Sign Up</p>
 
                 <label>Username:</label>

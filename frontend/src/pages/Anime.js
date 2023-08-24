@@ -12,6 +12,7 @@ const Anime = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [animeDetails, setAnimeDetails] = useState(null);
     const [error, setError] = useState(null);
+    const [errorClass, setErrorClass] = useState('error');
     const { user } = useAuthContext();
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const Anime = () => {
     const handleClick = async () => {
         if (user) {
             const email = user.email;
-            console.log(email);
+            
             const response = await fetch('http://localhost:4000/api/users/favoritelist', {
                 method: 'POST',
                 headers: {
@@ -45,14 +46,20 @@ const Anime = () => {
 
             if (!response.ok) {
                 setError(json.error);
+                setErrorClass('error');
                 console.log(json.error)
             }
-            console.log("Added to favorites");
         }
+    }
+
+    const handleErrorClick = (e) => {
+        console.log(e);
+        setErrorClass('error delete')
     }
 
     return (
         <div className="anime-details">
+            {error && <div className={errorClass} onClick={handleErrorClick}>{error}</div>}
             {isLoading ? <LoadingOutlined className="loading-icon"/> :
             <>
                 <h1 className="anime-details-title">{animeDetails.title}</h1>

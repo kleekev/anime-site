@@ -18,7 +18,7 @@ const loginUser = async (req, res) => {
 
         res.status(200).json({ username, email, token});
     } catch (error) {
-        res.status(400).json({errror: error.message});
+        res.status(400).json({error: error.message});
     }
 }
 
@@ -79,7 +79,7 @@ const addAnimeList = async (req, res) => {
         const user = await User.findOne({ email });
 
         const animeList = user.animeList;
-        const anime = animeList.find((item) => item.anime_id === anime_id);
+        const anime = animeList.filter((item) => item.anime_id === anime_id);
 
         if (anime) {
             throw Error('Anime already added');
@@ -99,8 +99,8 @@ const addFavoriteList = async (req, res) => {
     try {
         const user = await User.findOne({ email });
 
-        const favoriteList = user.favoriteList;
-        const favoriteAnime = favoriteList.find((item) => item === anime_id);
+        const favorites = user.favoriteList;
+        const favoriteAnime = favorites.filter((item) => item === anime_id);
 
         if (favoriteAnime) {
             throw Error('Anime already added');

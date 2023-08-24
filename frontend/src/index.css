@@ -482,6 +482,7 @@ div.error {
 }
 
 .anime-details {
+  position: relative;
   background-color: white;
   margin-top: 50px;
   padding: 50px 80px;
@@ -489,6 +490,22 @@ div.error {
   -webkit-box-shadow: 0px 0px 40px -18px rgba(0,0,0,1);
   -moz-box-shadow: 0px 0px 40px -18px rgba(0,0,0,1);
   box-shadow: 0px 0px 40px -18px rgba(0,0,0,1);
+}
+
+.anime-details .error {
+  position: absolute;
+  left: 50%;
+  top: -7%;
+  transform: translate(-50%, -50%);
+  padding: 15px 100px;
+}
+
+.anime-details .error.delete {
+  display: none;
+}
+
+.anime-details .error:hover {
+  cursor: pointer;
 }
 
 .anime-details img {
