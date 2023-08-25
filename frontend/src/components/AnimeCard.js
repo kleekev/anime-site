@@ -24,7 +24,6 @@ const AnimeCard = (props) => {
                 <div className="footer">
                     {filteredGenres.map((genre) => (<span id={genre.toLowerCase().replace(' ', '-')}>{genre}</span>))}
                 </div>
-                
             </div>
         </div>
     )
