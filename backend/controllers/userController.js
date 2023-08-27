@@ -40,10 +40,10 @@ const signupUser = async (req, res) => {
 
 // Get user anime list
 const getAnimeList = async (req, res) => {
-    const { email } = req.body;
+    const { username } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
 
         if (!user) {
             throw Error('No such user');
@@ -57,10 +57,10 @@ const getAnimeList = async (req, res) => {
 
 // Get user favorites list
 const getFavoriteList = async (req, res) => {
-    const { email } = req.body;
+    const { username } = req.body;
 
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
 
         if (!user) {
             throw Error('No such user');
