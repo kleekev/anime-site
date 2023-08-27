@@ -623,6 +623,7 @@ div.error {
 
 /* user card */
 .user-page .header {
+  box-sizing: border-box;
   width: 100%;
   height: 175px;
   background-color: white;
@@ -640,4 +641,44 @@ div.error {
   font-size: 60px;
   margin-left: 50px;
   letter-spacing: 2px;
+}
+
+.user-page .body {
+  height: 600px;
+}
+
+.user-page .user-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #bde0fe;
+  font-size: 20px;
+  gap: 10px;
+}
+
+.user-page .user-navbar a {
+  text-decoration: none;
+  color: black;
+  margin: 0 25px;
+}
+
+.user-card-overview .bio {
+  box-sizing: border-box;
+  height: 300px;
+  width: 700px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.user-card-overview .bio h1 {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.user-card-overview .bio p {
+  font-size: 18px;
+  line-height: 22px;
 }
