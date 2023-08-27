@@ -11,7 +11,7 @@ import UserCardStats from "../components/UserCardStats";
 
 const User = () => {
     const username = window.location.search.substring(1).split('=')[1].split('&')[0];
-    const initialTab = window.location.search.substring(1).split('=')[2];
+    const initialTab = window.location.search.substring(1).split('=')[2] || 'overview';
 
     const { user } = useAuthContext();
 
@@ -31,7 +31,7 @@ const User = () => {
             </div>
             <div className="body">
                 {tab === 'overview' ? <UserCardOverview/> :
-                 tab === 'animelist' ? <UserCardAnimelist/> :
+                 tab === 'animelist' ? <UserCardAnimelist username={username}/> :
                  tab === 'stats' ? <UserCardStats/> :
                  tab === 'favorites' ? <UserCardFavorite/> : null}
             </div>

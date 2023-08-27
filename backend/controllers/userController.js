@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const { getAnimeDetails } = require('./animeController');
 
 const createToken = (_id) => {
     return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
@@ -40,7 +41,7 @@ const signupUser = async (req, res) => {
 
 // Get user anime list
 const getAnimeList = async (req, res) => {
-    const { username } = req.body;
+    const { username } = req.query;
 
     try {
         const user = await User.findOne({ username });
@@ -48,8 +49,18 @@ const getAnimeList = async (req, res) => {
         if (!user) {
             throw Error('No such user');
         }
-        const animeList = user.animeList
-        res.status(200).json({animeList});
+        let animelist = user.animeList
+        animelist = await Promise.all(animelist.map(async (anime) =>  {
+            const details = await getAnimeDetails(anime.anime_id);
+            const anime_id = anime.anime_id;
+            const score = anime.score;
+            const status = anime.status;
+            const progress = anime.progress;
+            return {...details, anime_id, score, status, progress};
+        }));
+
+        
+        res.status(200).json(animelist);
     } catch (error) {
         res.status(400).json({error: error.message});
     }
@@ -57,7 +68,7 @@ const getAnimeList = async (req, res) => {
 
 // Get user favorites list
 const getFavoriteList = async (req, res) => {
-    const { username } = req.body;
+    const { username } = req.query;
 
     try {
         const user = await User.findOne({ username });
@@ -66,7 +77,7 @@ const getFavoriteList = async (req, res) => {
             throw Error('No such user');
         }
         const favoriteList = user.favoriteList
-        res.status(200).json({favoriteList});
+        res.status(200).json(favoriteList);
     } catch (error) {
         res.status(400).json({error: error.message});
     }
@@ -81,7 +92,7 @@ const addAnimeList = async (req, res) => {
         const animeList = user.animeList;
         const anime = animeList.filter((item) => item.anime_id === anime_id);
 
-        if (anime) {
+        if (anime.length > 0) {
             throw Error('Anime already added');
         }
         

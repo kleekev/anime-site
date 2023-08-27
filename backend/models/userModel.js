@@ -22,6 +22,7 @@ const UserSchema = new Schema({
     animeList: [{
         _id: false,
         anime_id: {type: Number, required: true},
+        progress: {type: Number},
         score: {type: Number},
         status: {type: String}
     }],

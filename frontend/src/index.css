@@ -682,3 +682,62 @@ div.error {
   font-size: 18px;
   line-height: 22px;
 }
+
+.animelist {
+  display: flex;
+  padding: 50px;
+}
+
+.animelist .filterbar {
+  width: 20%;
+}
+
+.animelist-card {
+  position: relative;
+  box-sizing: border-box;
+  width: 1000px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: white;
+}
+
+.animelist-card img {
+  display: none;
+  position: absolute;
+  height: 175px;
+  width: 125px;
+  object-fit: cover;  
+  left: -140px;
+}
+
+.animelist-card:hover img{
+  display: block;
+}
+
+.animelist-card .card-body {
+  width: 100%;
+  font-size: 15px;
+  display: flex;
+}
+
+.animelist-card .card-body .title {
+  text-decoration: none;
+  color: black;
+  width: 60%;
+}
+
+.animelist-card .card-body .score {
+  width: 5%;
+}
+
+.animelist-card .card-body .status {
+  width: 25%
+}
+
+.animelist-card .card-body .progress {
+  width: 10%;
+}

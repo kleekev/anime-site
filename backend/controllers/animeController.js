@@ -91,9 +91,28 @@ const getTopAnime = async (req, res) => {
     res.status(200).json(results);
     client.close();
 }
+
+const getAnimeDetails = async (anime_id) => {
+    const client = new MongoClient(process.env.MONGODB_URI);
+    try {
+        // Connect to the MongoDB cluster
+        client.connect();
+    } catch (e) {
+        console.error(e);
+    }
+    const animeCollection = client.db('anime').collection('anime');
+
+    const anime = await animeCollection.findOne({anime_id: anime_id}, {projection: {title: 1 , main_picture: 1, _id: 0, episodes: 1}});
+    if (!anime) {
+        return;
+    }
+    return anime;
+}
+
 module.exports = {
     getAnimes,
     getAnime,
     getAnimeSearch,
-    getTopAnime
+    getTopAnime,
+    getAnimeDetails
 }

@@ -21,7 +21,6 @@ const Home = () => {
             const response = await fetch('http://localhost:4000/api/animes/search?season=summer&year=2023')
             const json = await response.json();
 
-
             if (response.ok) {
                 const filteredJson = json.filter((anime) => {
                     return Object.keys(anime).length > 5;
