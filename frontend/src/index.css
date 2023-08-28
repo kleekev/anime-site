@@ -701,7 +701,7 @@ div.error {
   align-items: center;
   margin: 5px 0;
   border-radius: 15px;
-  padding: 10px;
+  padding: 5px 15px;
   background-color: white;
 }
 
@@ -712,6 +712,10 @@ div.error {
   width: 125px;
   object-fit: cover;  
   left: -140px;
+}
+
+.animelist-card:hover {
+  background-color: #FBFBF7;
 }
 
 .animelist-card:hover img{
@@ -740,4 +744,62 @@ div.error {
 
 .animelist-card .card-body .progress {
   width: 10%;
+}
+
+/* edit anime */
+
+.edit-anime {
+  width: 50%;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 50px 80px;
+  border-radius: 40px;
+  -webkit-box-shadow: 0px 0px 40px -18px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 40px -18px rgba(0,0,0,1);
+  box-shadow: 0px 0px 40px -18px rgba(0,0,0,1);
+}
+
+.edit-anime .anime-details-title {
+  display: block;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.edit-anime .body {
+  display: flex;
+}
+
+.edit-anime .body .add-to-list-form {
+  flex: 1;
+}
+
+.edit-anime .body .add-to-list-form button{
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 200px;
+  height: 40px;
+}
+
+.edit-anime .body .add-to-list-form .form-inputs {
+  margin-left: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.edit-anime .body img {
+  width: 200px;
+  height: 275px;
+  object-fit: cover;
+}
+
+.edit-anime .body .add-to-list-form .form-inputs .inputs {
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.edit-anime .body .add-to-list-form .form-inputs .inputs label {
+  margin-bottom: 15px;
 }

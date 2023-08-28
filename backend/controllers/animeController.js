@@ -74,6 +74,7 @@ const getTopAnime = async (req, res) => {
         console.error(e);
     }
     const projection = {
+        anime_id: 1,
         title: 1,
         main_picture: 1,
         score: 1,

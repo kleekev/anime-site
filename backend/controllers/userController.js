@@ -113,7 +113,7 @@ const addFavoriteList = async (req, res) => {
         const favorites = user.favoriteList;
         const favoriteAnime = favorites.filter((item) => item === anime_id);
 
-        if (favoriteAnime) {
+        if (favoriteAnime.length > 0) {
             throw Error('Anime already added');
         }
         

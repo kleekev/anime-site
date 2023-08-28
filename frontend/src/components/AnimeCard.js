@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 // helper functions
 import capitalize from '../helper/Capitalize'
 
@@ -10,8 +12,10 @@ const AnimeCard = (props) => {
     return (
         <div className="anime-card">
             <div className="image-container">
-                <img src={anime.main_picture} alt={anime.title} />
-                <div>{capitalize(anime.title)}</div>
+                <Link to={'/anime?id=' + anime.anime_id}>
+                    <img src={anime.main_picture} alt={anime.title} />
+                    <div>{capitalize(anime.title)}</div>
+                </Link>
             </div>
 
             <div className="anime-card-details">
