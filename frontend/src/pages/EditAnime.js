@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react"
 import { LoadingOutlined } from '@ant-design/icons'
 import { Select, InputNumber } from 'antd'
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const EditAnime = () => {
-    const anime_id = window.location.search.substring(1).split('=')[1] 
+    const anime_id = window.location.search.substring(1).split('=')[1];
+    const { user } = useAuthContext();
+    const email = user.email;
 
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [animeDetails, setAnimeDetails] = useState(null);
     const [status, setStatus] = useState('');
     const [score, setScore] = useState(0);
@@ -24,6 +28,27 @@ const EditAnime = () => {
         }
         fetchAnimeDetails();
     }, [])
+    
+    const handleSubmit = async () => {
+        setIsLoading(true);
+        setError(error);
+
+        const response = await fetch('http://localhost:4000/api/users/animelist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`},
+            body: JSON.stringify({email, anime_id, score, status, episodes})
+        });
+
+        const json = await response.json();
+
+        if (!response.ok) {
+            setIsLoading(false);
+            setError(json.error);
+        }
+        setIsLoading(false);
+    }
 
     return (
         <div className="edit-anime">
@@ -32,7 +57,7 @@ const EditAnime = () => {
                 <h1 className="anime-details-title">Add {animeDetails.title} to your list</h1> 
                 <div className="body">
                     <img src={animeDetails.main_picture} alt={animeDetails.title} />
-                    <form className="add-to-list-form"noValidate>
+                    <form className="add-to-list-form"noValidate onSubmit={handleSubmit}>
                         <div className="form-inputs">
                             <div className="status inputs">
                                 <label>Status</label>
@@ -81,7 +106,6 @@ const EditAnime = () => {
                             </div>
                             <button>Add to List</button>
                         </div>
-                        
                     </form>
                 </div>
             </>

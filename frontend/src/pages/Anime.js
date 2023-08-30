@@ -14,6 +14,7 @@ const Anime = () => {
     const [animeDetails, setAnimeDetails] = useState(null);
     const [error, setError] = useState(null);
     const [errorClass, setErrorClass] = useState('error');
+    const [inAnimelist, setInAnimelist] = useState(false);
     const { user } = useAuthContext();
 
     useEffect(() => {

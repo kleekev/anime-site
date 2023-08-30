@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const { getAnimeDetails } = require('./animeController');
 
 const createToken = (_id) => {
-    return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' });
+    return jwt.sign({_id}, process.env.SECRET, { expiresIn: '7d' });
 }
 
 // login user
@@ -84,7 +84,7 @@ const getFavoriteList = async (req, res) => {
 }
 
 const addAnimeList = async (req, res) => {
-    const { email, anime_id, score, status } = req.body;
+    const { email, anime_id, score, status, episodes } = req.body;
 
     try {
         const user = await User.findOne({ email });
@@ -96,16 +96,16 @@ const addAnimeList = async (req, res) => {
             throw Error('Anime already added');
         }
         
-        user.animeList.push({anime_id, score, status});
+        user.animeList.push({anime_id, score, status, progress:episodes });
         await user.save();
-        res.status(200).json({anime_id, score, status});
+        res.status(200).json({anime_id, score, status, episodes});
     } catch (error) {
         res.status(400).json({error: error.message});
     }
 }
 
 const addFavoriteList = async (req, res) => {
-    const { email, anime_id} = req.body;
+    const { email, anime_id } = req.body;
 
     try {
         const user = await User.findOne({ email });
