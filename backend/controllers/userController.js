@@ -125,11 +125,35 @@ const addFavoriteList = async (req, res) => {
     }
 }
 
+const getAnimeFromList = async (req, res) => {
+    const { email } = req.body;
+    const { id } = req.params;
+
+    try {
+        const user = await User.findOne({ email });
+
+        const animeList = user.animeList;
+        const anime = animeList.filter((item) => item.anime_id === Number(id));
+
+
+        if (!user) {
+            throw Error('User does not exist');
+        }
+        
+        anime.length > 0 ? res.status(200).json({doesExist: true}) : 
+                           res.status(200).json({doesExist : false});
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+
+}
+
 module.exports = {
     loginUser,
     signupUser,
     getAnimeList,
     getFavoriteList,
     addAnimeList,
-    addFavoriteList
+    addFavoriteList,
+    getAnimeFromList
 }

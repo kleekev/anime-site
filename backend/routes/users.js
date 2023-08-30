@@ -8,7 +8,8 @@ const {
     getAnimeList,
     getFavoriteList,
     addAnimeList,
-    addFavoriteList
+    addFavoriteList,
+    getAnimeFromList
 } = require('../controllers/userController');
 
 const router = express.Router()
@@ -27,6 +28,9 @@ router.get('/favoritelist', getFavoriteList);
 
 // require auth for these user routes
 router.use(requireAuth);
+
+// GET user anime if it exists in list
+router.get('/animelist/:id', getAnimeFromList);
 
 // POST user anime list
 router.post('/animelist', addAnimeList);

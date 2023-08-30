@@ -14,10 +14,9 @@ const Anime = () => {
     const [animeDetails, setAnimeDetails] = useState(null);
     const [error, setError] = useState(null);
     const [errorClass, setErrorClass] = useState('error');
-    const [inAnimelist, setInAnimelist] = useState(false);
     const { user } = useAuthContext();
 
-    useEffect(() => {
+    useEffect(() => { 
         const fetchAnimeDetails = async () => {
             setIsLoading(true);
             const response = await fetch('http://localhost:4000/api/animes/'+ anime_id)

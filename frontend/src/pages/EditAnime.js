@@ -27,7 +27,7 @@ const EditAnime = () => {
             setIsLoading(false);
         }
         fetchAnimeDetails();
-    }, [])
+    }, [anime_id])
     
     const handleSubmit = async () => {
         setIsLoading(true);
