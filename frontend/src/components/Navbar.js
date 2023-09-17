@@ -11,7 +11,7 @@ const Navbar = () => {
         logout();
     }
     return (
-        <header>
+        <header className='fixed top-0 flex'>
             <div className="container">
                 <Link className="home-link links" to="/">
                     AniTrack

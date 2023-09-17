@@ -12,7 +12,7 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="App">
+    <div className='flex'>
       <BrowserRouter>
         <Navbar />
         <div className="pages">
