@@ -318,8 +318,23 @@ div.error {
 }
 
 /* filter bar */
-.filter-bar input {
-  width: 200px;
+.filter-bar {
+  margin: 20px auto;
+}
+
+.filter-bar .filter-title {
+  height: 50px;
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.filter-bar .filter-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 25px;
 }
 
 /* top anime page */

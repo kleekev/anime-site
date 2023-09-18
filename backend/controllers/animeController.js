@@ -87,7 +87,7 @@ const getTopAnime = async (req, res) => {
         genres: 1
     }
     const animeCollection = client.db('anime').collection('anime');
-    const animes = await animeCollection.find({}).project(projection).sort({score: -1}).limit(100);
+    const animes = await animeCollection.find({}).project(projection).sort({score: -1}).limit(5000);
     const results = await animes.toArray();
     res.status(200).json(results);
     client.close();
