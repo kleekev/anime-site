@@ -52,7 +52,7 @@ const TopAnime = () => {
         <div className="top-animes-page">
             {isLoading ? <LoadingOutlined className='loading-icon' /> :
             <>
-                <h2>Top 100 Animes</h2>
+                <h2>Top Animes</h2>
                 <Filterbar getFilterData={setFilterData} data={filterData}/>
                 {top100Animes.length == 0 ? <div>No Results</div> : 
                 <div className="top-animes-list">

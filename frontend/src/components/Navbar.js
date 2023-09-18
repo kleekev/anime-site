@@ -22,7 +22,7 @@ const Navbar = () => {
                         <CaretUpFilled className='dropdown-arrow'/>
                         <div className="dropdown-content">
                             <Link to={'/top_animes'}>
-                                Top 100
+                                Top Animes
                             </Link>
                             <Link>
                                 Search
